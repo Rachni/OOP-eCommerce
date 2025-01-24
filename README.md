@@ -2,7 +2,7 @@
 
 This project was created to practice Object-Oriented Programming (OOP) in PHP as part of a class project. It serves as a simple example of an eCommerce platform, where users can purchase educational books. The project focuses on the use of classes and object-oriented principles to simulate real-world functionality in an online store.
 
-[Leer en español](README.es.md)
+[Leer en español](#oop-ecommerce-español)
 
 ## Demo
 
@@ -75,4 +75,3 @@ Puedes probar la demo de este proyecto en Railway: [Demo de OOP Ecommerce](https
 2. Inicia un servidor PHP local con el siguiente comando:
    ```bash
    php -S localhost:8000
-
