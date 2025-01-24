@@ -29,13 +29,8 @@ RUN echo "</Directory>" >> /etc/apache2/apache2.conf
 # Habilita mod_rewrite para Apache (necesario para .htaccess)
 RUN a2enmod rewrite
 
-# Instala Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
-
 # Expone el puerto 8080 para Railway
 EXPOSE 8080
 
 # Comando de inicio de Apache
 CMD ["apache2-foreground"]
-
