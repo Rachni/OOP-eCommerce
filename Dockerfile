@@ -14,14 +14,20 @@ RUN apt-get update && apt-get install -y \
     unzip \
     && docker-php-ext-install pdo_mysql gd zip
 
-# Cambia el DocumentRoot de Apache a la carpeta public
-RUN sed -i 's|/var/www/html|/var/www/html/public|' /etc/apache2/sites-available/000-default.conf
-
 # Copia el contenido del proyecto al directorio web de Apache
 COPY . /var/www/html/
 
-# Ajusta permisos para la carpeta public
+# Ajusta permisos para la carpeta 'public' y todos los archivos
 RUN chown -R www-data:www-data /var/www/html/public
+RUN chmod -R 755 /var/www/html/public
+
+# Permite que Apache procese archivos .htaccess dentro de 'public'
+RUN echo "<Directory /var/www/html/public>" >> /etc/apache2/apache2.conf
+RUN echo "    AllowOverride All" >> /etc/apache2/apache2.conf
+RUN echo "</Directory>" >> /etc/apache2/apache2.conf
+
+# Habilita mod_rewrite para Apache (necesario para .htaccess)
+RUN a2enmod rewrite
 
 # Instala Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -32,3 +38,4 @@ EXPOSE 8080
 
 # Comando de inicio de Apache
 CMD ["apache2-foreground"]
+
