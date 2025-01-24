@@ -1,0 +1,10 @@
+{
+    "name": "rachni/oop-ecommerce",
+    "description": "A PHP project for managing shopping cart in an ecommerce environment.",
+    "require": {
+        "php": ">=7.4"
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:8080 -t ."
+    }
+}
